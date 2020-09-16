@@ -10,10 +10,11 @@ with orders as (
     select
         orders.order_id,
         orders.customer_id,
-        payments.amount
+        sum(payments.amount) as total_amount
     from orders
     left join payments
     on payments.order_id = orders.order_id
+    group by 1, 2
 
 )
 
